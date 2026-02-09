@@ -1,0 +1,61 @@
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #2980f3 0%, #6dd5fa 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: rgba(255,255,255,0.10);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    padding: 40px 32px;
+    text-align: center;
+}
+
+h1 {
+    color: #fff;
+    margin-bottom: 24px;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+}
+
+.profile-pic-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.profile-pic {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+
+.contact-btn {
+    background: #fff;
+    color: #2980f3;
+    border: 2px solid #e0e0e0;
+    border-radius: 24px;
+    padding: 14px 36px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow:
+        0 2px 8px rgba(41,128,243,0.10),
+        0 5px 0 0 #b3c6e0, /* bottom bevel */
+        0 -5px 0 0 #ffffff; /* top bevel */
+    transition: background 0.2s, color 0.2s;
+}
+
+.contact-btn:hover {
+    background: #2980f3;
+    color: #fff;
+}
