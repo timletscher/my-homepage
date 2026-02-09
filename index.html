@@ -18,4 +18,17 @@
         <button class="contact-btn">Hit Me Up!</button>
     </div>
 </body>
+<script>
+// Generate twinkling stars
+const starCount = 80;
+const starsContainer = document.querySelector('.stars');
+for (let i = 0; i < starCount; i++) {
+    const star = document.createElement('div');
+    star.className = 'star';
+    star.style.top = Math.random() * 100 + 'vh';
+    star.style.left = Math.random() * 100 + 'vw';
+    star.style.animationDelay = (Math.random() * 2) + 's';
+    starsContainer.appendChild(star);
+}
+</script>
 </html>
