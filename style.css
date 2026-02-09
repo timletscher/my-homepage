@@ -48,10 +48,7 @@ h1 {
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    box-shadow:
-        0 2px 8px rgba(41,128,243,0.10),
-        0 5px 0 0 #b3c6e0, /* bottom bevel */
-        0 -5px 0 0 #ffffff; /* top bevel */
+    box-shadow: 0 2px 8px rgba(41,128,243,0.10);
     transition: background 0.2s, color 0.2s;
 }
 
