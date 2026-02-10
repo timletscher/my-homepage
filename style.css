@@ -92,7 +92,7 @@
     min-height: 100vh;
     margin: 0;
     font-family: Tahoma, Geneva, Verdana, sans-serif;
-    background: #22325c;
+    background: #6c9895;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,10 +128,50 @@ body {
     min-height: 100vh;
     margin: 0;
     font-family: Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #7fffd4 0%, #b2f7ef 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        background: #6c9895 !important;
+.contact-btn, .location-btn {
+        background: #fff;
+        color: #2980f3;
+        border: 2px solid #e0e0e0;
+        border-radius: 24px;
+        padding: 14px 36px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(41,128,243,0.10);
+        transition: background 0.2s, color 0.2s;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+}
+
+@keyframes rainbowPulse {
+    0% {
+        background: linear-gradient(90deg, #ff0080, #7928ca, #007cf0, #00ffb8, #ffeb3b, #ff0080);
+        filter: brightness(1);
+    }
+    50% {
+        background: linear-gradient(90deg, #ffeb3b, #00ffb8, #007cf0, #7928ca, #ff0080, #ffeb3b);
+        filter: brightness(1.25);
+    }
+    100% {
+        background: linear-gradient(90deg, #ff0080, #7928ca, #007cf0, #00ffb8, #ffeb3b, #ff0080);
+        filter: brightness(1);
+    }
+}
+
+.contact-btn:hover, .location-btn:hover {
+        color: #fff;
+        animation: rainbowPulse 1.2s linear infinite;
+        background-size: 400% 400%;
+        background-clip: border-box;
+        border: 2px solid #fff;
+}
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 }
 
 .container {
