@@ -22,7 +22,10 @@
                 <div id="weather-widget" class="weather-widget">
                     <div class="weather-header">
                         <h3>Weather</h3>
-                        <button id="location-btn" class="location-btn">📍 Get Location</button>
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <button id="unit-toggle" class="location-btn" style="font-size:0.95rem;">°C / °F</button>
+                            <button id="location-btn" class="location-btn">📍 Get Location</button>
+                        </div>
                     </div>
                     <div id="weather-content" class="weather-content">
                         <div class="loading">Loading weather data...</div>
@@ -44,21 +47,33 @@ for (let i = 0; i < starCount; i++) {
         starsContainer.appendChild(star);
 }
 
-// Weather Widget Logic
+// Weather Widget Logic with C/F toggle
 const weatherContent = document.getElementById('weather-content');
 const locationBtn = document.getElementById('location-btn');
+const unitToggle = document.getElementById('unit-toggle');
+let tempUnit = 'celsius'; // 'celsius' or 'fahrenheit'
+let lastCoords = { lat: 47.6062, lon: -122.3321 };
+let lastWeatherData = null;
 
 function displayWeather(data) {
+    lastWeatherData = data;
     if (!data || !data.current_weather) {
         weatherContent.innerHTML = '<div class="loading">Weather data unavailable.</div>';
         return;
     }
     const w = data.current_weather;
+    let temp = w.temperature;
+    let unitLabel = tempUnit === 'celsius' ? '°C' : '°F';
+    if (tempUnit === 'fahrenheit') {
+        temp = Math.round(temp * 9/5 + 32);
+    } else {
+        temp = Math.round(temp);
+    }
     const html = `
         <div style="display:flex;align-items:center;gap:12px;">
             <div style="font-size:2.2rem;">${getWeatherIcon(w.weathercode)}</div>
             <div>
-                <div style="font-size:1.5rem;font-weight:bold;">${Math.round(w.temperature)}°C</div>
+                <div style="font-size:1.5rem;font-weight:bold;">${temp}${unitLabel}</div>
                 <div style="font-size:1rem;">${getWeatherDescription(w.weathercode)}</div>
                 <div style="font-size:0.95rem;opacity:0.8;">Wind: ${Math.round(w.windspeed)} km/h</div>
             </div>
@@ -94,8 +109,9 @@ function getWeatherDescription(code) {
 }
 
 function fetchWeather(lat, lon) {
+    lastCoords = { lat, lon };
     weatherContent.innerHTML = '<div class="loading">Loading weather data...</div>';
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&temperature_unit=${tempUnit}`;
     fetch(url)
         .then(r => r.json())
         .then(displayWeather)
@@ -123,6 +139,10 @@ function getLocationAndFetchWeather() {
 }
 
 locationBtn.addEventListener('click', getLocationAndFetchWeather);
+unitToggle.addEventListener('click', () => {
+    tempUnit = tempUnit === 'celsius' ? 'fahrenheit' : 'celsius';
+    fetchWeather(lastCoords.lat, lastCoords.lon);
+});
 
 // On load, show default (Seattle, WA)
 fetchWeather(47.6062, -122.3321);
