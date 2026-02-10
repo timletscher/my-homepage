@@ -16,11 +16,10 @@
     pointer-events: none;
     object-fit: cover;
 }
-body {
     min-height: 100vh;
     margin: 0;
     font-family: Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(180deg, #3a5da8 0%, #6faed9 60%, #f7e9d7 100%);
+    background: #22325c;
     display: flex;
     align-items: center;
     justify-content: center;
